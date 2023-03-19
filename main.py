@@ -4,8 +4,8 @@ def parallel_processing(n, m, data):
     output = []
     threads = [(i, 0) for i in range(n)]
     for i in range(m):
-        threads.sort(key=lambda x: x[1])
         time = data[i]
+        threads.sort(key=lambda x: (x[1], x[0]))
         index, time_finished = threads[0]
         output.append((index, time_finished))
         threads[0] = (index, time_finished + time)
@@ -13,7 +13,7 @@ def parallel_processing(n, m, data):
 
     # TODO: write the function for simulating parallel tasks, 
     # create the output pairs
-
+    output = [(time[0], time[1]) for time in output]
     return output
 
 def main():
